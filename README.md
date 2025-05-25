@@ -12,7 +12,9 @@ Swinger is not actively maintained, but it may help fast-track querying your Cou
  Next, you will need to extract any/all data that you want to query using DiscoCourier. See the courier docs for details.
 
  - If you've extraded the data to a sqlite database, place it in the /src/data/ directory directly.
- - You can also add the sequelize migration and model folders that you use in Courier in the /data folder here (may be easiest to symlink them)
+ - Courier will also have created a /data/cache directory on first run. Copy this to Swinger, or symlink it.
+ - You can also add the sequelize migration and model folders that you use in Courier in the /data folder here
+ - Again, you may consider just symlinking the /data folder in Courier, so that future exports are available on demand.
 
 Once ready, `npm run dev`. The terminal should inform you that it's running on port 8080.
 
