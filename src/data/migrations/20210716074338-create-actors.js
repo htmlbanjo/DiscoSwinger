@@ -1,7 +1,7 @@
 'use strict';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('Actors_all', {
+    await queryInterface.createTable('Actors', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -32,18 +32,6 @@ module.exports = {
       isFemale: {
         type: Sequelize.BOOLEAN
       },
-      PSY: {
-        type: Sequelize.INTEGER
-      },
-      COR: {
-        type: Sequelize.INTEGER
-      },
-      ITL: {
-        type: Sequelize.INTEGER
-      },
-      MOT: {
-        type: Sequelize.INTEGER
-      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
@@ -55,6 +43,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('Actors_all');
+    await queryInterface.dropTable('Actors');
   }
 };
