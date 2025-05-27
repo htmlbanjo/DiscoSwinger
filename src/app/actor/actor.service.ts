@@ -1,49 +1,44 @@
-import { Actors_all } from '@data/models/'
+import { Actors } from '@data/models/'
 
 interface IActor {
-  id: number
+  actorId: number
+  refId: string
   name: string
   shortDescription: string
   longDescription: string
   isPlayer: boolean
   isNPC: boolean
   isFemale: boolean
-  PSY: number
-  COR: number
-  ITL: number
-  MOT: number
   createdAt: string
   updatedAt: string
 }
 interface IActorResponse {
-  id: number
+  actorId: number
+  refId: string
   name: string
+  shortDescription: string
+  longDescription: string
   isPlayer: boolean
   isNPC: boolean
   isFemale: boolean
-  PSY: number
-  COR: number
-  ITL: number
-  MOT: number
 }
 
 function setResponseItem(actor): IActorResponse {
   return {
-    id: actor.id,
+    actorId: actor.actorId,
+    refId: actor.refId,
     name: actor.name,
+    shortDescription: actor.shortDescription,
+    longDescription: actor.longDescription,
     isPlayer: actor.isPlayer,
     isNPC: actor.isNPC,
-    isFemale: actor.isFemale,
-    PSY: actor.PSY,
-    COR: actor.COR,
-    ITL: actor.ITL,
-    MOT: actor.MOT
+    isFemale: actor.isFemale
   }
 }
 
 export const getActorSome = async (): Promise<IActorResponse[]> => {
   try {
-    return Actors_all.findAll().then(result =>
+    return Actors.findAll().then(result =>
       result?.reduce((actorList: IActorResponse[], actor: IActor) => {
         actorList.push(setResponseItem(actor))
         return actorList
@@ -54,12 +49,12 @@ export const getActorSome = async (): Promise<IActorResponse[]> => {
   }
 }
 
-export const getActorOne = (id: number): IActorResponse => {
+export const getActorOne = (actorId: number): IActorResponse => {
   try {
-    return Actors_all.findOne({ where: { id } }).then((actor: IActor) =>
+    return Actors.findOne({ where: { actorId } }).then((actor: IActor) =>
       setResponseItem(actor)
     )
   } catch (err) {
-    throw new Error(`Couln't find actor with ID=<\${id}>: ${err}`)
+    throw new Error(`Couln't find actor with actorId=<\${actorId}>: ${err}`)
   }
 }

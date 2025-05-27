@@ -16,6 +16,64 @@
     "host": "localhost:8080",
     "basePath": "/api",
     "paths" : {
+        "/actor" : {
+            "get" : {
+                "summary" : "Get all the actors",
+                "description": "Get all the actors",
+                "produces": ["application/json"],
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/actorResponse"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": "#/definitions/InvalidResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/actor/{actorId}" : {
+            "get" : {
+                "summary" : "Get one actor actorId",
+                "description": "Get one actor by actorId",
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "name": "actorId",
+                        "in": "path",
+                        "description": "location matching actorId param",
+                        "required": true,
+                        "type": "array"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/actorResponse"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": "#/definitions/InvalidResponse"
+                        }
+                    }
+                }
+            }
+        },
         "/location" : {
             "get" : {
                 "summary" : "Get all the locations",
@@ -76,6 +134,41 @@
         }
     }, 
     "definitions": {
+        "actorResponse": {
+            "type": "object",
+            "properties": {
+                "actorId": {
+                    "type": "number"
+                },
+                "refId": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "shortDescription": {
+                    "type": "string"
+                },
+                "longDescription": {
+                    "type": "string"
+                },
+                "isPlayer": {
+                    "type": "boolean"
+                },
+                "isNPC": {
+                    "type": "boolean"
+                },
+                "isFemale": {
+                    "type": "boolean"
+                },
+                "createdAt": {
+                    "type": "string"
+                },
+                "updatedAt": {
+                    "type": "string"
+                }
+            }
+        },
         "locationResponse": {
             "type": "object",
             "properties": {
